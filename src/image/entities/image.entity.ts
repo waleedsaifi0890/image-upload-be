@@ -1,4 +1,5 @@
 import { ObjectType, Field, InputType } from '@nestjs/graphql';
+import { Comment } from 'src/comments/entities/comment.entity';
 import {
   PrimaryGeneratedColumn,
   OneToOne,
@@ -17,4 +18,10 @@ export class Image {
   @Column({ nullable: true, default: null })
   @Field({ nullable: true })
   image: string;
+
+  @Field(() => [Comment], { nullable: true })
+  @OneToMany(() => Comment, (comment) => comment.image, {
+    nullable: true,
+  })
+  comments: Comment[];
 }

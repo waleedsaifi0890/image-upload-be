@@ -5,6 +5,9 @@ import * as dotenv from 'dotenv';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ImageModule } from './image/image.module';
 import { CommonModule } from './common/common.module';
+import { Comment } from './comments/entities/comment.entity';
+import { CommentsModule } from './comments/comments.module';
+import { Image } from './image/entities/image.entity';
 
 dotenv.config();
 
@@ -20,11 +23,12 @@ dotenv.config();
       ssl: {
         rejectUnauthorized: false,
       },
-      entities: [Image],
+      entities: [Image, Comment],
       synchronize: true,
     }),
     CommonModule,
     ImageModule,
+    CommentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

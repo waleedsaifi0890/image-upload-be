@@ -1,0 +1,54 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Comment {
+  id: Float!
+  image: Image
+  comment: String!
+}
+
+type Image {
+  id: Float!
+  image: String
+  comments: [Comment!]
+}
+
+type Query {
+  images: [Image!]!
+  image(id: Int!): Image!
+  comments: [Comment!]!
+  comment(id: Int!): Comment!
+}
+
+type Mutation {
+  createImage(createImageInput: CreateImageInput!): Image!
+  updateImage(updateImageInput: UpdateImageInput!): Image!
+  removeImage(id: Int!): Image!
+  createComment(createCommentInput: CreateCommentInput!): Comment!
+  updateComment(updateCommentInput: UpdateCommentInput!): Comment!
+  removeComment(id: Int!): Comment!
+}
+
+input CreateImageInput {
+  image: Upload
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
+
+input UpdateImageInput {
+  image: Upload
+  id: Int!
+}
+
+input CreateCommentInput {
+  image: Int!
+  comment: String!
+}
+
+input UpdateCommentInput {
+  image: Int
+  comment: String
+  id: Int!
+}
